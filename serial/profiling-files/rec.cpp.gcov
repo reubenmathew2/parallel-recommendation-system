@@ -1,0 +1,687 @@
+        -:    0:Source:rec.cpp
+        -:    0:Graph:rec.gcno
+        -:    0:Data:rec.gcda
+        -:    0:Runs:1
+        -:    1:#include <vector>
+        -:    2:#include <queue>
+        -:    3:#include <string>
+        -:    4:#include <cmath>
+        -:    5:#include <vector>
+        -:    6:#include <iostream>
+        -:    7:#include <fstream>
+        -:    8:#include <assert.h>
+        -:    9:#include <functional>
+        -:   10:
+        -:   11:using namespace std;
+        -:   12:
+        -:   13:vector<string> moviesList;
+        -:   14:
+function _Z10topRatingsSt6vectorIS_IdSaIdEESaIS1_EEi called 2 returned 100% blocks executed 86%
+        2:   15:void topRatings(vector<vector<double>> ratingsMat, int user)
+        -:   16:{
+        4:   17:    std::priority_queue<std::pair<double, int>> q;
+call    0 returned 2
+call    1 returned 2
+call    2 never executed
+      902:   18:    for (int i = 0; i < ratingsMat[user].size(); ++i)
+call    0 returned 902
+call    1 returned 902
+branch  2 taken 900 (fallthrough)
+branch  3 taken 2
+        -:   19:    {
+      900:   20:        q.push(std::pair<double, int>(ratingsMat[user][i], i));
+call    0 returned 900
+call    1 returned 900
+call    2 returned 900
+call    3 returned 900
+branch  4 taken 900 (fallthrough)
+branch  5 taken 0 (throw)
+        -:   21:    }
+        2:   22:    int k = 7; // number of movies to be shown
+        2:   23:    cout << "\nTop rated movies by User " << user << endl;
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 2
+branch  7 taken 2 (fallthrough)
+branch  8 taken 0 (throw)
+       16:   24:    for (int i = 0; i < k; ++i)
+branch  0 taken 14 (fallthrough)
+branch  1 taken 2
+        -:   25:    {
+       14:   26:        int ki = q.top().second;
+call    0 returned 14
+       14:   27:        printf("%s\n", moviesList[ki].c_str());
+call    0 returned 14
+call    1 returned 14
+call    2 returned 14
+branch  3 taken 14 (fallthrough)
+branch  4 taken 0 (throw)
+       14:   28:        q.pop();
+call    0 returned 14
+branch  1 taken 14 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   29:    }
+        2:   30:}
+        -:   31:
+function _Z7makeRecSt6vectorIS_IdSaIdEESaIS1_EEi called 2 returned 100% blocks executed 86%
+        2:   32:void makeRec(vector<vector<double>> predict, int user)
+        -:   33:{
+        4:   34:    std::priority_queue<std::pair<double, int>> q;
+call    0 returned 2
+call    1 returned 2
+call    2 never executed
+      902:   35:    for (int i = 0; i < predict[user].size(); ++i)
+call    0 returned 902
+call    1 returned 902
+branch  2 taken 900 (fallthrough)
+branch  3 taken 2
+        -:   36:    {
+      900:   37:        q.push(std::pair<double, int>(predict[user][i], i));
+call    0 returned 900
+call    1 returned 900
+call    2 returned 900
+call    3 returned 900
+branch  4 taken 900 (fallthrough)
+branch  5 taken 0 (throw)
+        -:   38:    }
+        2:   39:    int k = 7; // number of recomendations to be shown
+        2:   40:    cout << "\nRecomendations for User " << user << endl;
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 2
+branch  7 taken 2 (fallthrough)
+branch  8 taken 0 (throw)
+       16:   41:    for (int i = 0; i < k; ++i)
+branch  0 taken 14 (fallthrough)
+branch  1 taken 2
+        -:   42:    {
+       14:   43:        int ki = q.top().second;
+call    0 returned 14
+       14:   44:        printf("%s\n", moviesList[ki].c_str());
+call    0 returned 14
+call    1 returned 14
+call    2 returned 14
+branch  3 taken 14 (fallthrough)
+branch  4 taken 0 (throw)
+        -:   45:
+       14:   46:        q.pop();
+call    0 returned 14
+branch  1 taken 14 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   47:    }
+        2:   48:}
+        -:   49:
+function _Z7matReadNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEii called 1 returned 100% blocks executed 56%
+        1:   50:vector<vector<double>> matRead(string file, int row, int col)
+        -:   51:{
+        2:   52:    ifstream input(file);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 1
+call    4 never executed
+        1:   53:    if (!input.is_open())
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+branch  3 taken 0 (fallthrough)
+branch  4 taken 1
+        -:   54:    {
+        -:   55:        cerr << "File is not existing, check the path: \n"
+    #####:   56:             << file << endl;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    #####:   57:        exit(1);
+call    0 never executed
+        -:   58:    }
+        2:   59:    vector<vector<double>> data(row, vector<double>(col, 0));
+call    0 returned 1
+call    1 returned 1
+call    2 returned 1
+branch  3 taken 1 (fallthrough)
+branch  4 taken 0 (throw)
+call    5 returned 1
+branch  6 taken 1 (fallthrough)
+branch  7 taken 0 (throw)
+call    8 returned 1
+call    9 returned 1
+      269:   60:    for (int i = 0; i < row; ++i)
+branch  0 taken 268 (fallthrough)
+branch  1 taken 1
+        -:   61:    {
+   120868:   62:        for (int j = 0; j < col; ++j)
+branch  0 taken 120600 (fallthrough)
+branch  1 taken 268
+        -:   63:        {
+   120600:   64:            input >> data[i][j];
+call    0 returned 120600
+call    1 returned 120600
+call    2 returned 120600
+branch  3 taken 120600 (fallthrough)
+branch  4 taken 0 (throw)
+        -:   65:        }
+        -:   66:    }
+        2:   67:    return data;
+        -:   68:}
+        -:   69:
+function _Z9movieReadNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 1 returned 100% blocks executed 64%
+        1:   70:vector<string> movieRead(string file)
+        -:   71:{
+        1:   72:    vector<string> movies;
+call    0 returned 1
+        2:   73:    ifstream input(file);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 1
+call    4 never executed
+        1:   74:    if (!input.is_open())
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+branch  3 taken 0 (fallthrough)
+branch  4 taken 1
+        -:   75:    {
+        -:   76:        cerr << "File is not existing, check the path: \n"
+    #####:   77:             << file << endl;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    #####:   78:        exit(1);
+call    0 never executed
+        -:   79:    }
+        2:   80:    string str;
+call    0 returned 1
+call    1 returned 1
+call    2 never executed
+      451:   81:    while (getline(input, str))
+call    0 returned 451
+branch  1 taken 451 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 451
+branch  4 taken 451 (fallthrough)
+branch  5 taken 0 (throw)
+branch  6 taken 450 (fallthrough)
+branch  7 taken 1
+        -:   82:    {
+      450:   83:        if (str.size() > 0)
+call    0 returned 450
+branch  1 taken 450 (fallthrough)
+branch  2 taken 0
+      450:   84:            movies.push_back(str);
+call    0 returned 450
+branch  1 taken 450 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   85:    }
+        2:   86:    return movies;
+        -:   87:}
+        -:   88:
+function _Z8matWriteSt6vectorIS_IdSaIdEESaIS1_EENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 1 returned 100% blocks executed 90%
+        1:   89:void matWrite(vector<vector<double>> mat, string file)
+        -:   90:{
+        2:   91:    ofstream output(file);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 1
+call    4 never executed
+        1:   92:    int row = mat.size();
+call    0 returned 1
+        1:   93:    int col = mat[0].size();
+call    0 returned 1
+call    1 returned 1
+        -:   94:
+      269:   95:    for (int i = 0; i < row; i++)
+branch  0 taken 268 (fallthrough)
+branch  1 taken 1
+        -:   96:    {
+   120868:   97:        for (int j = 0; j < col; j++)
+branch  0 taken 120600 (fallthrough)
+branch  1 taken 268
+   120600:   98:            output << mat[i][j] << " ";
+call    0 returned 120600
+call    1 returned 120600
+call    2 returned 120600
+branch  3 taken 120600 (fallthrough)
+branch  4 taken 0 (throw)
+call    5 returned 120600
+branch  6 taken 120600 (fallthrough)
+branch  7 taken 0 (throw)
+      268:   99:        output << endl;
+call    0 returned 268
+branch  1 taken 268 (fallthrough)
+branch  2 taken 0 (throw)
+        -:  100:    }
+        1:  101:}
+        -:  102:
+function _Z4normSt6vectorIdSaIdEE called 11993022 returned 100% blocks executed 100%
+ 11993022:  103:double norm(vector<double> A)
+        -:  104:{
+ 11993022:  105:    double res = 0;
+541105968:  106:    for (vector<double>::size_type i = 0; i < A.size(); ++i)
+call    0 returned 541105968
+branch  1 taken 529112946 (fallthrough)
+branch  2 taken 11993022
+        -:  107:    {
+529112946:  108:        res += pow(A[i], 2);
+call    0 returned 529112946
+call    1 returned 529112946
+        -:  109:    }
+ 11993022:  110:    return sqrt(res);
+        -:  111:}
+        -:  112:
+function _Z10dotProductSt6vectorIdSaIdEES1_ called 6084112 returned 100% blocks executed 100%
+  6084112:  113:double dotProduct(vector<double> A, vector<double> B)
+        -:  114:{
+  6084112:  115:    double res = 0;
+276637096:  116:    for (vector<double>::size_type i = 0; i < A.size(); ++i)
+call    0 returned 276637096
+branch  1 taken 270552984 (fallthrough)
+branch  2 taken 6084112
+        -:  117:    {
+270552984:  118:        res += A[i] * B[i];
+call    0 returned 270552984
+call    1 returned 270552984
+        -:  119:    }
+  6084112:  120:    return res;
+        -:  121:}
+        -:  122:
+function _Z19adjCosineSimilaritySt6vectorIdSaIdEES1_ called 5996511 returned 100% blocks executed 68%
+  5996511:  123:double adjCosineSimilarity(vector<double> A, vector<double> B) //adjusted cosine similarity (cosine similarity - mean)
+        -:  124:{
+  5996511:  125:    double A_mean = 0;
+  5996511:  126:    double B_mean = 0;
+270552984:  127:    for (vector<double>::size_type i = 0; i < A.size(); ++i)
+call    0 returned 270552984
+branch  1 taken 264556473 (fallthrough)
+branch  2 taken 5996511
+        -:  128:    {
+264556473:  129:        A_mean += A[i];
+call    0 returned 264556473
+264556473:  130:        B_mean += B[i];
+call    0 returned 264556473
+        -:  131:    }
+  5996511:  132:    A_mean /= A.size();
+call    0 returned 5996511
+  5996511:  133:    B_mean /= B.size();
+call    0 returned 5996511
+ 11993022:  134:    vector<double> C(A);
+call    0 returned 5996511
+branch  1 taken 5996511 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 5996511
+call    4 never executed
+  5996511:  135:    vector<double> D(B);
+call    0 returned 5996511
+branch  1 taken 5996511 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 never executed
+270552984:  136:    for (vector<double>::size_type i = 0; i < A.size(); ++i)
+call    0 returned 270552984
+branch  1 taken 264556473 (fallthrough)
+branch  2 taken 5996511
+        -:  137:    {
+264556473:  138:        C[i] = A[i] - A_mean;
+call    0 returned 264556473
+call    1 returned 264556473
+264556473:  139:        D[i] = B[i] - B_mean;
+call    0 returned 264556473
+call    1 returned 264556473
+        -:  140:    }
+ 11993022:  141:    return dotProduct(C, D) / (norm(C) * norm(D)); //if output is nan then there is no correlation
+call    0 returned 5996511
+branch  1 taken 5996511 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 5996511
+branch  4 taken 5996511 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 5996511
+call    7 returned 5996511
+branch  8 taken 5996511 (fallthrough)
+branch  9 taken 0 (throw)
+call   10 returned 5996511
+branch 11 taken 5996511 (fallthrough)
+branch 12 taken 0 (throw)
+call   13 returned 5996511
+branch 14 taken 5996511 (fallthrough)
+branch 15 taken 0 (throw)
+call   16 returned 5996511
+branch 17 taken 5996511 (fallthrough)
+branch 18 taken 0 (throw)
+call   19 returned 5996511
+call   20 returned 5996511
+call   21 returned 5996511
+call   22 returned 5996511
+call   23 returned 5996511
+call   24 never executed
+call   25 never executed
+call   26 never executed
+call   27 never executed
+        -:  142:}
+        -:  143:
+function _Z11checkCommonSt6vectorIdSaIdEES1_RS1_S2_ called 5999329 returned 100% blocks executed 100%
+  5999329:  144:void checkCommon(vector<double> A, vector<double> B, vector<double> &C, vector<double> &D) //to check if both A and B have rated
+        -:  145:{
+2705697379:  146:    for (vector<double>::size_type i = 0; i < A.size(); ++i)
+call    0 returned 2705697379
+branch  1 taken 2699698050 (fallthrough)
+branch  2 taken 5999329
+        -:  147:    {
+2699698050:  148:        if (A[i] && B[i])
+call    0 returned 2699698050
+branch  1 taken 622284189 (fallthrough)
+branch  2 taken 2077413861
+call    3 returned 622284189
+branch  4 taken 264556473 (fallthrough)
+branch  5 taken 357727716
+branch  6 taken 264556473 (fallthrough)
+branch  7 taken 2435141577
+        -:  149:        {
+264556473:  150:            C.push_back(A[i]);
+call    0 returned 264556473
+call    1 returned 264556473
+264556473:  151:            D.push_back(B[i]);
+call    0 returned 264556473
+call    1 returned 264556473
+        -:  152:        }
+        -:  153:    }
+  5999329:  154:}
+        -:  155:
+function _Z11colabFilterSt6vectorIS_IdSaIdEESaIS1_EEii called 1 returned 100% blocks executed 67%
+        1:  156:vector<vector<double>> colabFilter(vector<vector<double>> ratingsMat, int usersNum, int itemsNum)
+        -:  157:{
+        2:  158:    vector<vector<double>> predict(usersNum, vector<double>(itemsNum, 0));
+call    0 returned 1
+call    1 returned 1
+call    2 returned 1
+branch  3 taken 1 (fallthrough)
+branch  4 taken 0 (throw)
+call    5 returned 1
+branch  6 taken 1 (fallthrough)
+branch  7 taken 0 (throw)
+call    8 returned 1
+call    9 returned 1
+call   10 never executed
+      269:  159:    for (int i = 0; i < usersNum; i++) //Make predictions for each user
+branch  0 taken 268 (fallthrough)
+branch  1 taken 1
+        -:  160:    {
+   120868:  161:        for (int j = 0; j < itemsNum; j++) //Find item j that user i has not scored, and predict user i's score for item j
+branch  0 taken 120600 (fallthrough)
+branch  1 taken 268
+        -:  162:        {
+   120600:  163:            if (ratingsMat[i][j]) //if movie has already been rated by the user
+call    0 returned 120600
+call    1 returned 120600
+branch  2 taken 32999 (fallthrough)
+branch  3 taken 87601
+    32999:  164:                continue;
+        -:  165:            else //If item j has not been rated by user i, find out users who have rated item j
+        -:  166:            {
+   175202:  167:                vector<double> cosSim;
+call    0 returned 87601
+call    1 returned 87601
+call    2 never executed
+   175202:  168:                vector<double> ratingsOld;
+call    0 returned 87601
+call    1 returned 87601
+call    2 never executed
+ 23564669:  169:                for (int k = 0; k < usersNum; k++) //If user k has rated item j, calculate the cosSimilarity between user k and user i
+branch  0 taken 23477068 (fallthrough)
+branch  1 taken 87601
+        -:  170:                {
+ 23477068:  171:                    if (ratingsMat[k][j]) //Find user k who has rated item j
+call    0 returned 23477068
+call    1 returned 23477068
+branch  2 taken 5999329 (fallthrough)
+branch  3 taken 17477739
+        -:  172:                    {
+ 11998658:  173:                        vector<double> commonA, commonB; //  Store the scores of the two items that have been jointly rated in two vectors respectively
+call    0 returned 5999329
+call    1 returned 5999329
+call    2 returned 5999329
+call    3 returned 5999329
+call    4 never executed
+call    5 never executed
+  5999329:  174:                        checkCommon(ratingsMat[i], ratingsMat[k], commonA, commonB); //  check if item has been rated by both users
+call    0 returned 5999329
+call    1 returned 5999329
+branch  2 taken 5999329 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 5999329
+call    5 returned 5999329
+branch  6 taken 5999329 (fallthrough)
+branch  7 taken 0 (throw)
+call    8 returned 5999329
+branch  9 taken 5999329 (fallthrough)
+branch 10 taken 0 (throw)
+call   11 returned 5999329
+call   12 returned 5999329
+call   13 never executed
+call   14 never executed
+  5999329:  175:                        if (!commonA.empty()) //If the two have jointly rated items, calculate the cosine similarity
+call    0 returned 5999329
+branch  1 taken 5996511 (fallthrough)
+branch  2 taken 2818
+        -:  176:                        {
+  5996511:  177:                            cosSim.push_back(adjCosineSimilarity(commonA, commonB)); //cosine similarity
+call    0 returned 5996511
+branch  1 taken 5996511 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 5996511
+branch  4 taken 5996511 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 5996511
+branch  7 taken 5996511 (fallthrough)
+branch  8 taken 0 (throw)
+call    9 returned 5996511
+branch 10 taken 5996511 (fallthrough)
+branch 11 taken 0 (throw)
+call   12 returned 5996511
+call   13 returned 5996511
+call   14 never executed
+call   15 never executed
+  5996511:  178:                            ratingsOld.push_back(ratingsMat[k][j]); //old ratings
+call    0 returned 5996511
+call    1 returned 5996511
+call    2 returned 5996511
+branch  3 taken 5996511 (fallthrough)
+branch  4 taken 0 (throw)
+        -:  179:                        }
+        -:  180:                    }
+        -:  181:                }
+    87601:  182:                double cosSimSum = 0; //dot product of ratingsOld and cosSim
+    87601:  183:                if (!cosSim.empty())
+call    0 returned 87601
+branch  1 taken 87601 (fallthrough)
+branch  2 taken 0
+        -:  184:                {
+  6084112:  185:                    for (int m = 0; m < cosSim.size(); m++)
+call    0 returned 6084112
+branch  1 taken 5996511 (fallthrough)
+branch  2 taken 87601
+        -:  186:                    {
+  5996511:  187:                        cosSimSum += cosSim[m];
+call    0 returned 5996511
+        -:  188:                    }
+    87601:  189:                    predict[i][j] = dotProduct(cosSim, ratingsOld) / (cosSimSum);
+call    0 returned 87601
+branch  1 taken 87601 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 87601
+branch  4 taken 87601 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 87601
+call    7 returned 87601
+call    8 returned 87601
+call    9 returned 87601
+call   10 returned 87601
+call   11 never executed
+    87601:  190:                    cout << "user " << i << " item " << j << " with predicted rating " << predict[i][j] << endl;
+call    0 returned 87601
+branch  1 taken 87601 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 87601
+branch  4 taken 87601 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 87601
+branch  7 taken 87601 (fallthrough)
+branch  8 taken 0 (throw)
+call    9 returned 87601
+branch 10 taken 87601 (fallthrough)
+branch 11 taken 0 (throw)
+call   12 returned 87601
+branch 13 taken 87601 (fallthrough)
+branch 14 taken 0 (throw)
+call   15 returned 87601
+call   16 returned 87601
+call   17 returned 87601
+branch 18 taken 87601 (fallthrough)
+branch 19 taken 0 (throw)
+call   20 returned 87601
+branch 21 taken 87601 (fallthrough)
+branch 22 taken 0 (throw)
+        -:  191:                }
+        -:  192:            }
+        -:  193:        }
+        -:  194:    }
+        1:  195:    return predict;
+        -:  196:}
+        -:  197:
+function main called 1 returned 100% blocks executed 55%
+        1:  198:int main()
+        -:  199:{
+        2:  200:    string file1("ratings.txt");
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 1
+call    5 never executed
+        2:  201:    string file2("movies.txt");
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 1
+call    5 never executed
+        -:  202:
+        1:  203:    int row = 268;
+        1:  204:    int col = 450;
+        2:  205:    vector<vector<double>> ratingsMat = matRead(file1, row, col);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 1
+call    7 never executed
+        1:  206:    moviesList = movieRead(file2);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 1
+call    7 returned 1
+call    8 returned 1
+call    9 never executed
+        1:  207:    vector<vector<double>> predict = colabFilter(ratingsMat, row, col);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 never executed
+        1:  208:    matWrite(predict, "predict.txt");
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 1
+branch  5 taken 1 (fallthrough)
+branch  6 taken 0 (throw)
+call    7 returned 1
+branch  8 taken 1 (fallthrough)
+branch  9 taken 0 (throw)
+call   10 returned 1
+call   11 returned 1
+call   12 returned 1
+call   13 never executed
+call   14 never executed
+call   15 never executed
+        -:  209:
+        -:  210:    int uid, check;
+        1:  211:    do
+        -:  212:    {
+        2:  213:        cout << "\nEnter User ID:" << endl;
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
+branch  5 taken 0 (throw)
+        2:  214:        cin >> uid;
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        2:  215:        topRatings(ratingsMat, uid);
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 2
+call    7 never executed
+        2:  216:        makeRec(predict, uid);
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 2
+call    7 never executed
+        2:  217:        cout << "\nRecommend for another user? (1 = Yes, 0 = No)" << endl;
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
+branch  5 taken 0 (throw)
+        2:  218:        cin >> check;
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        2:  219:    } while (check == 1);
+branch  0 taken 1 (fallthrough)
+branch  1 taken 1
+        -:  220:
+        1:  221:    return 0;
+call    0 returned 1
+        -:  222:}
